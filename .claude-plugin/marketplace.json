@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "linkedin-workflow-agent",
+  "description": "LinkedIn workflow agent skill pack for Claude",
+  "owner": {
+    "name": "soulimed",
+    "url": "https://github.com/soulimed"
+  },
+  "plugins": [
+    {
+      "name": "linkedin-agent",
+      "description": "Eleven Claude skills for LinkedIn content workflows, including a local humanizer with a five-check detection panel.",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/soulimed/linkedin-workflow-agent"
+    }
+  ]
+}
