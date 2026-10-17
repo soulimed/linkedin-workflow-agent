@@ -127,3 +127,23 @@ Scores are local heuristics, not third-party detector APIs. Higher is more human
 ## License
 
 [MIT](./LICENSE)
+
+---
+
+## Marketing site
+
+The public landing experience lives in [`web/`](./web/) (Next.js static export).
+
+```bash
+cd web
+npm install
+npm run dev    # http://127.0.0.1:4321
+npm run build  # syncs ../skills into public/skills, writes ./out
+```
+
+GitHub Pages deploys from `.github/workflows/deploy-github-pages.yml` on pushes to `main` that touch `web/` or `skills/`. Expected URL after Pages is enabled:
+
+**https://soulimed.github.io/linkedin-workflow-agent/**
+
+The site’s **Get the skills** flow lets visitors pick one of the eleven `skills/li-*` packs and download `SKILL.md` (or a zip when the skill has multiple files). GitHub CTAs point at this repository. Product truths stay the same: local-first, human approval, **no auto-posting**.
+
