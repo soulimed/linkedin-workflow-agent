@@ -4,8 +4,6 @@ Eleven Claude skills for LinkedIn content workflows — posts, comments, replies
 
 **Nothing is posted until you approve it.** These skills draft. You paste.
 
-> Maintained fork of [Jakeschincariol/linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill) by [Jake Schincariol](https://opusjake.ai). MIT licensed.
-
 ---
 
 ## Why this repo
@@ -125,15 +123,6 @@ Scores are local heuristics, not third-party detector APIs. Higher is more human
 1. **No auto-posting.** LinkedIn's personal-profile posting API is partner-only; browser automation violates their User Agreement. Skills draft; you paste.
 2. **No fabricated claims.** Missing numbers become `{{your number}}` with a flag.
 3. **Humanizer is honest.** It removes real machine artefacts (invisible chars, slop lexicon, typography). It does not claim "undetectable."
-
----
-
-## Credit
-
-Original work by [Jake Schincariol](https://opusjake.ai) — [linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill).  
-Full write-up: [opusjake.ai/r/linkedin-agent](https://opusjake.ai/r/linkedin-agent).
-
-This repository is a maintained fork by [soulimed](https://github.com/soulimed).
 
 ## License
 

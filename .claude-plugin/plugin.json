@@ -3,8 +3,8 @@
   "description": "Eleven Claude skills for LinkedIn workflows: posts, comments, replies, profile scoring, weekly planning, DMs, inbox triage, carousels, repurposing, audits, and a local humanizer that strips AI fingerprints before you publish.",
   "version": "1.0.0",
   "author": {
-    "name": "Jake Schincariol",
-    "url": "https://opusjake.ai"
+    "name": "soulimed",
+    "url": "https://github.com/soulimed"
   },
   "homepage": "https://github.com/soulimed/linkedin-workflow-agent",
   "repository": "https://github.com/soulimed/linkedin-workflow-agent",
