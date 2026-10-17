@@ -1,109 +1,171 @@
 # LinkedIn Workflow Agent
 
-Eleven Claude skills for LinkedIn content workflows — posts, comments, replies, profile scoring, weekly planning, DMs, inbox triage, and a local humanizer that strips common AI fingerprints before you publish.
+**An open-source toolkit for creating better LinkedIn content, building professional relationships, and managing your content workflow — with AI assistance and human control at every step.**
 
-**Nothing is posted until you approve it.** These skills draft. You paste.
+**Try the site:** [https://soulimed.github.io/linkedin-workflow-agent/](https://soulimed.github.io/linkedin-workflow-agent/) — browse skills and download them in the browser.
 
----
+LinkedIn Workflow Agent is a collection of 11 Claude Code skills designed to streamline your LinkedIn workflow, from content creation and profile optimization to engagement, outreach, and performance analysis.
 
-## Why this repo
+Each skill produces actionable, ready-to-use drafts tailored to your communication style. Nothing is published automatically. You review, refine, and approve every piece of content before it goes live.
 
-| | |
-| --- | --- |
-| **Local-first** | Humanizer scripts run on your machine. No API key. Nothing uploaded. |
-| **Human approval** | Every skill ends with a copy-ready block. You decide what goes live. |
-| **Voice-aware** | Skills read your `voice.md` so drafts sound like you, not a template. |
-| **Open source** | MIT. Free to use, change, and ship. |
+## Why LinkedIn Workflow Agent?
 
----
+| Principle | Description |
+|---|---|
+| **Privacy-first** | Humanization and detection scripts run locally on your machine. No API key is required for these scripts, and draft content is not uploaded by them. |
+| **Human-in-the-loop** | Every workflow produces a copy-ready draft. You retain full control over what you publish or send. |
+| **Personalized voice** | Skills reference your `voice.md` profile to align content with your tone, vocabulary, and writing style. |
+| **Modular by design** | Use individual skills or combine them into a complete LinkedIn content workflow. |
+| **Open source** | Released under the MIT License. Free to use, modify, and distribute under its terms. |
 
-## Skills
+## Features & Skills
 
-| Command | What it does |
-| --- | --- |
-| `/li-post` | Turn one idea into a post — 3 hooks from 21 formulas, one full draft, humanized. |
-| `/li-comment` | Comment on other people's posts (9 types). Never "Great post!". |
-| `/li-reply` | Triage and reply to comments under your own posts. |
-| `/li-profile` | Score your profile against a 12-part rubric (out of 100) and rewrite weak spots. |
-| `/li-plan` | Plan the week: what to post, when, and who to engage with. |
-| `/li-human` | Strip AI tells and score the draft with a five-check panel. |
-| `/li-carousel` | Document-post copy, slide by slide, plus cover and PDF guidance. |
-| `/li-repurpose` | Turn one video, newsletter, or transcript into a week of standalone posts. |
-| `/li-dm` | Connection note, first message, and two follow-ups. |
-| `/li-inbox` | Triage inbox into lead / recruiter / peer / ask / spam. |
-| `/li-audit` | Post-mortem on published posts by engagement rate and reach. |
+Eleven specialized skills cover the LinkedIn content lifecycle, from ideation to performance analysis.
 
----
+| Command | Description |
+|---|---|
+| `/li-post` | Transform an idea into a complete LinkedIn post. Generate three alternative hooks from 21 formulas, develop the strongest option, and refine the final draft. |
+| `/li-comment` | Write thoughtful, context-aware comments using nine engagement styles. Avoid generic responses and contribute meaningfully to discussions. |
+| `/li-reply` | Review and respond to comments on your posts with relevant, personalized replies. |
+| `/li-profile` | Evaluate your LinkedIn profile against a 12-part rubric, score it out of 100, and improve weaker sections. |
+| `/li-plan` | Build a weekly content and engagement plan with recommended topics, posting schedules, and networking priorities. |
+| `/li-human` | Refine drafts to remove common AI-writing patterns and evaluate them using a five-part diagnostic report. |
+| `/li-carousel` | Create document-style LinkedIn carousel content, including slide-by-slide copy, cover concepts, and PDF preparation guidance. |
+| `/li-repurpose` | Turn a video, newsletter, or transcript into a week of distinct, standalone LinkedIn posts. |
+| `/li-dm` | Draft personalized connection requests, initial outreach messages, and two follow-up messages. |
+| `/li-inbox` | Organize inbox conversations into lead, recruiter, peer, request, or spam categories to help prioritize responses. |
+| `/li-audit` | Analyze published posts using available reach and engagement metrics to identify patterns and opportunities for improvement. |
 
-## Install
+## Installation
 
-### Claude Code (recommended)
+### Option 1: Claude Code — Recommended
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/soulimed/linkedin-workflow-agent.git
+```
+
+Install the skills in your personal Claude Code skills directory:
+
+```bash
+mkdir -p ~/.claude/skills
 cp -r linkedin-workflow-agent/skills/li-* ~/.claude/skills/
 ```
 
-Or as a plugin:
+The skills will then be available across your Claude Code projects.
 
-```
+### Option 2: Install as a Claude Code Plugin
+
+Add the marketplace and install the plugin:
+
+```text
 /plugin marketplace add soulimed/linkedin-workflow-agent
 /plugin install linkedin-agent
 ```
 
-### Project-local
+### Option 3: Project-Level Installation
 
-Copy the same `skills/li-*` folders into your repo's `.claude/skills/`.
+To make the skills available only within a specific project, copy the required `skills/li-*` directories into that project's `.claude/skills/` directory.
 
-### Chat-only
+### Option 4: Chat-Only Usage
 
-Paste any single `SKILL.md` at the top of a chat. You lose the Python tools in `/li-human`, but the writing skills still work.
+You can use the writing skills without installing Claude Code:
 
-### Voice profile (do this first)
+1. Open the desired skill's `SKILL.md` file.
+2. Copy its contents into a Claude conversation.
+3. Provide your topic, context, or draft.
+4. Review and refine the generated content before publishing.
+
+**Note:** The `/li-human` skill's Python scripts require local execution and are not available through the chat-only workflow.
+
+## Personalize Your Writing Voice
+
+For the best results, configure your voice profile before using the skills.
+
+Create the configuration directory and copy the template:
 
 ```bash
 mkdir -p ~/.claude/linkedin
-cp templates/voice.md ~/.claude/linkedin/voice.md
+cp linkedin-workflow-agent/templates/voice.md \
+   ~/.claude/linkedin/voice.md
 ```
 
-Fill it in, or paste three of your own posts into Claude and ask it to write `voice.md` from them. Every skill reads that file.
+Edit `voice.md` to describe your tone, preferred vocabulary, writing habits, audience, and communication preferences.
 
----
+Alternatively, provide Claude with three examples of your own LinkedIn posts and ask it to generate a voice profile based on those samples.
 
-## Humanizer (local Python, no dependencies)
+The skills use this profile to produce more consistent, personalized drafts instead of relying on generic templates.
+
+## Local Humanization & Draft Analysis
+
+The `/li-human` skill includes lightweight Python scripts that refine drafts and report on common AI-writing patterns.
+
+**No external API key or third-party detector service is required.**
+
+### Requirements
+
+- Python 3
+- No additional Python dependencies
+
+### Usage
+
+Navigate to the humanization skill directory:
 
 ```bash
-cd skills/li-human
-
-python3 humanize.py draft.txt --report   # clean + show every change
-python3 detect.py draft.txt              # five-check score
-python3 detect.py before.txt after.txt   # before / after delta
+cd linkedin-workflow-agent/skills/li-human
 ```
 
-| Check | Measures |
-| --- | --- |
-| **BURSTINESS** | Sentence-length variation |
-| **SPECIFICITY** | Numbers, names, concrete markers |
-| **SLOP DENSITY** | Stock AI vocabulary hits |
-| **FINGERPRINT** | Invisible chars, em dashes, curly quotes |
-| **VOICE** | Contractions, person, structural tells |
+Humanize a draft and display the changes:
 
-Scores are local heuristics, not third-party detector APIs. Higher is more human.
-
----
-
-## Repository layout
-
+```bash
+python3 humanize.py draft.txt --report
 ```
-.
+
+Evaluate a draft using the diagnostic checks:
+
+```bash
+python3 detect.py draft.txt
+```
+
+Compare the original and revised versions:
+
+```bash
+python3 detect.py before.txt after.txt
+```
+
+### Diagnostic Checks
+
+| Check | What It Evaluates |
+|---|---|
+| **Burstiness** | Variation in sentence length and structure. |
+| **Specificity** | Presence of concrete details, names, numbers, and examples. |
+| **Slop Density** | Frequency of common AI-associated phrases and vocabulary. |
+| **Fingerprint** | Formatting artifacts, invisible characters, em dashes, and curly quotation marks. |
+| **Voice** | Use of contractions, personal perspective, and structural patterns. |
+
+These checks are local heuristics designed to support editing and consistency. They are not scientific measures of authorship, do not guarantee that content will pass AI detectors, and should be interpreted as writing-quality signals rather than definitive evidence.
+
+## Repository Structure
+
+```text
+linkedin-workflow-agent/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
-├── .claude-plugin/          # Claude Code plugin manifest
+├── .claude-plugin/
+│   └── ...                    # Plugin configuration
 ├── skills/
-│   ├── li-post/             # hooks.json + SKILL.md
-│   ├── li-human/            # detect.py, humanize.py, slop.json
-│   ├── li-profile/          # rubric.json + SKILL.md
+│   ├── li-post/
+│   │   ├── hooks.json
+│   │   └── SKILL.md
+│   ├── li-human/
+│   │   ├── detect.py
+│   │   ├── humanize.py
+│   │   └── slop.json
+│   ├── li-profile/
+│   │   ├── rubric.json
+│   │   └── SKILL.md
 │   ├── li-comment/
 │   ├── li-reply/
 │   ├── li-plan/
@@ -113,37 +175,95 @@ Scores are local heuristics, not third-party detector APIs. Higher is more human
 │   ├── li-inbox/
 │   └── li-audit/
 └── templates/
-    └── voice.md             # copy to ~/.claude/linkedin/voice.md
+    └── voice.md
 ```
 
----
+Each skill has its own directory and instructions. Some skills include supporting configuration files or scripts.
 
-## Design rules
+## Design Principles
 
-1. **No auto-posting.** LinkedIn's personal-profile posting API is partner-only; browser automation violates their User Agreement. Skills draft; you paste.
-2. **No fabricated claims.** Missing numbers become `{{your number}}` with a flag.
-3. **Humanizer is honest.** It removes real machine artefacts (invisible chars, slop lexicon, typography). It does not claim "undetectable."
+### 1. Human Approval Comes First
 
-## License
+The agent drafts content but does not automatically publish posts, send messages, or interact with LinkedIn on your behalf. You decide what to use and when to use it.
 
-[MIT](./LICENSE)
+### 2. Accuracy Over Fabrication
 
----
+The skills must not invent achievements, statistics, metrics, or professional experience. When information is missing, placeholders such as `{{your number}}` are used where appropriate so you can supply verified details.
 
-## Marketing site
+### 3. Humanization Without False Promises
 
-The public landing experience lives in [`web/`](./web/) (Next.js static export).
+The humanizer targets recognizable writing patterns and formatting artifacts. It supports clearer, more natural writing but does not promise undetectable AI-generated content.
+
+### 4. Local Processing Where Possible
+
+The humanization and diagnostic scripts operate locally. Other processing depends on the AI environment in which the skills are used.
+
+### 5. Modular and Extensible
+
+Each skill addresses a specific task and can be used independently, adapted to your workflow, or extended to support additional LinkedIn use cases.
+
+## Marketing Website
+
+The public-facing website is maintained in the [`web/`](https://github.com/soulimed/linkedin-workflow-agent/tree/main/web) directory and built with Next.js using static export.
+
+**Live demo (try it):** [https://soulimed.github.io/linkedin-workflow-agent/](https://soulimed.github.io/linkedin-workflow-agent/)
+
+### Run Locally
 
 ```bash
 cd web
 npm install
-npm run dev    # http://127.0.0.1:4321
-npm run build  # syncs ../skills into public/skills, writes ./out
+npm run dev
 ```
 
-GitHub Pages deploys from `.github/workflows/deploy-github-pages.yml` on pushes to `main` that touch `web/` or `skills/`. Expected URL after Pages is enabled:
+Open [http://127.0.0.1:4321](http://127.0.0.1:4321) in your browser.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The build process synchronizes the skill files into `public/skills` and generates the static website in `web/out`.
+
+### Deployment
+
+The repository includes a GitHub Actions workflow at `.github/workflows/deploy-github-pages.yml`.
+
+Deployments are triggered by pushes to `main` that modify files under `web/` or `skills/`.
+
+Once GitHub Pages is enabled and configured, the public URL is:
 
 **https://soulimed.github.io/linkedin-workflow-agent/**
 
-The site’s **Get the skills** flow lets visitors pick one of the eleven `skills/li-*` packs and download `SKILL.md` (or a zip when the skill has multiple files). GitHub CTAs point at this repository. Product truths stay the same: local-first, human approval, **no auto-posting**.
+### Get the Skills
 
+The website's **Get the Skills** experience allows visitors to browse the 11 skill packs and download their `SKILL.md` files, or ZIP archives when a skill contains multiple files.
+
+Repository links provide access to the source code and documentation.
+
+The website follows the same principles as the project: local-first utilities, transparent behavior, human approval, and no automatic posting.
+
+## Contributing
+
+Contributions, bug reports, documentation improvements, and new skill ideas are welcome.
+
+When contributing, please preserve the project's core principles:
+
+- Keep workflows transparent and user-controlled.
+- Never fabricate professional claims or performance metrics.
+- Avoid unauthorized automated LinkedIn interactions.
+- Document external dependencies and data-processing behavior.
+- Keep local utilities lightweight wherever practical.
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/soulimed/linkedin-workflow-agent/blob/main/LICENSE).
+
+You are free to use, modify, and distribute the project in accordance with the license terms.
+
+---
+
+**Build a more consistent LinkedIn presence — one thoughtful draft at a time.**
+
+*Draft with AI. Refine with your voice. Publish on your terms.*
